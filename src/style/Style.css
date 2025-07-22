@@ -3,6 +3,15 @@
 
 @custom-variant dark (&:is(.dark *));
 
+* {
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out,
+    color 0.2s ease-in-out, color 0.2s ease-in-out, shadow 0.2s ease-in-out;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -42,6 +51,7 @@
 }
 
 :root {
+  transition: all 0.2s ease-in-out;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -74,26 +84,40 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-   --toastify-color-light: #fff;
+
+  /* Toastify */
+  --toastify-color-light: #fff;
   --toastify-color-dark: #121212;
   --toastify-color-info: #3498db;
   --toastify-color-success: #07bc0c;
   --toastify-color-warning: #f1c40f;
   --toastify-color-error: hsl(6, 78%, 57%);
   --toastify-color-transparent: rgba(255, 255, 255, 0.7);
-  
+
   --toastify-icon-color-info: var(--toastify-color-info);
   --toastify-icon-color-success: var(--toastify-color-success);
   --toastify-icon-color-warning: var(--toastify-color-warning);
   --toastify-icon-color-error: var(--toastify-color-error);
-  
+
   --toastify-container-width: fit-content;
   --toastify-toast-width: 320px;
   --toastify-toast-offset: 16px;
-  --toastify-toast-top: max(var(--toastify-toast-offset), env(safe-area-inset-top));
-  --toastify-toast-right: max(var(--toastify-toast-offset), env(safe-area-inset-right));
-  --toastify-toast-left: max(var(--toastify-toast-offset), env(safe-area-inset-left));
-  --toastify-toast-bottom: max(var(--toastify-toast-offset), env(safe-area-inset-bottom));
+  --toastify-toast-top: max(
+    var(--toastify-toast-offset),
+    env(safe-area-inset-top)
+  );
+  --toastify-toast-right: max(
+    var(--toastify-toast-offset),
+    env(safe-area-inset-right)
+  );
+  --toastify-toast-left: max(
+    var(--toastify-toast-offset),
+    env(safe-area-inset-left)
+  );
+  --toastify-toast-bottom: max(
+    var(--toastify-toast-offset),
+    env(safe-area-inset-bottom)
+  );
   --toastify-toast-background: #fff;
   --toastify-toast-padding: 14px;
   --toastify-toast-min-height: 64px;
@@ -113,7 +137,15 @@
 
   --toastify-spinner-color: #616161;
   --toastify-spinner-color-empty-area: #e0e0e0;
-  --toastify-color-progress-light: linear-gradient(to right, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55);
+  --toastify-color-progress-light: linear-gradient(
+    to right,
+    #4cd964,
+    #5ac8fa,
+    #007aff,
+    #34aadc,
+    #5856d6,
+    #ff2d55
+  );
   --toastify-color-progress-dark: #bb86fc;
   --toastify-color-progress-info: var(--toastify-color-info);
   --toastify-color-progress-success: var(--toastify-color-success);
