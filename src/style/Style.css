@@ -1,3 +1,17 @@
+/*
+ * Global Stylesheet for the React Starter Template
+ *
+ * This file primarily contains base styles, custom properties for theming,
+ * and Tailwind CSS imports.
+ *
+ * The theme variables provided here are largely based on Shadcn UI's theming system,
+ * allowing for easy customization of colors, borders, and other design tokens.
+ *
+ * You can customize these theme variables to match your project's branding.
+ * For an easier way to generate and customize your Shadcn UI theme,
+ * consider using web tools like https://tweakcn.com/ or https://shadcnstudio.com/theme-generator.
+ */
+
 @import "tailwindcss";
 @import "tw-animate-css";
 

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-// Schema untuk registrasi 
+// Registration Schema 
 export const registerSchema = z.object({
     email: z
       .string()
@@ -26,7 +26,7 @@ export const registerSchema = z.object({
     path: ["passwordConfirmation"]
   });
 
-// Schema untuk login 
+// Login Schema
 export const loginSchema = z.object({
     email: z
       .string()
@@ -41,7 +41,7 @@ export const loginSchema = z.object({
       .min(5, "Password must be at least 5 characters")
   });
 
-// Schema untuk Edit Profile
+// Profile Schema
 export const profileSchema = z.object({
     email: z
       .string()

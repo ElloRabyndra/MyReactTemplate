@@ -1,9 +1,9 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 
-// Context untuk Authentication
+// Context for Authentication
 const AuthContext = createContext();
 
-// Custom hook untuk menggunakan AuthContext
+// Custom hook to use AuthContext
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
@@ -18,14 +18,14 @@ export const AuthProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Load users dan check authentication saat aplikasi dimuat
+  // Load users and check authentication when the application loads
   useEffect(() => {
     try {
-      // Load users dari localStorage
+      // Load users from localStorage
       const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
       setUsers(storedUsers);
 
-      // Cek apakah user sudah login sebelumnya
+      // Check if a user was previously logged in
       const currentUser = JSON.parse(localStorage.getItem("currentUser"));
       if (currentUser) {
         setUser(currentUser);
@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  // Function untuk register user baru
+  // Function to register a new user
   const register = (userData) => {
     try {
       const { email, password } = userData;
@@ -53,7 +53,7 @@ export const AuthProvider = ({ children }) => {
       const updatedUsers = [...users, newUser];
       setUsers(updatedUsers);
       
-      // Save ke localStorage
+      // Save to localStorage
       localStorage.setItem("users", JSON.stringify(updatedUsers));
       
       return { success: true, message: "Registration successful!" };
@@ -62,12 +62,12 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // Function untuk login
+  // Function for login
   const login = (credentials) => {
     try {
       const { email, password } = credentials;
       
-      // Cari user berdasarkan email dan password
+      // Find user by email and password
       const foundUser = users.find(
         (user) => user.email.toLowerCase() === email.toLowerCase() && user.password === password
       );
@@ -90,29 +90,29 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // Function untuk logout
+  // Function for logout
   const logout = () => {
     setUser(null);
     localStorage.removeItem("currentUser");
   };
 
-  // Function untuk check apakah email sudah terdaftar
+  // Function to check if an email is already registered
   const isEmailRegistered = (email) => {
     return users.some(user => user.email.toLowerCase() === email.toLowerCase());
   };
 
-  // Function untuk validasi password
+  // Function to validate password
   const validatePassword = (email, password) => {
     const foundUser = users.find(user => user.email.toLowerCase() === email.toLowerCase());
     return foundUser && foundUser.password === password;
   };
 
-    // Function untuk update profile
+    // Function to update profile
   const updateProfile = (profileData) => {
     try {
       const { email, old_password, new_password } = profileData;
       
-      // Cari user saat ini
+      // Find the current user
       const currentUserIndex = users.findIndex(u => u.id === user.id);
       
       if (currentUserIndex === -1) {
@@ -121,12 +121,12 @@ export const AuthProvider = ({ children }) => {
       
       const currentUserData = users[currentUserIndex];
       
-      // Validasi password lama
+      // Validate old password
       if (currentUserData.password !== old_password) {
         return { success: false, message: "Incorrect old password!" };
       }
       
-      // Jika email berubah, cek apakah email baru sudah digunakan user lain
+      // If email changes, check if the new email is already used by another user
       if (email.toLowerCase() !== currentUserData.email.toLowerCase()) {
         const emailExists = users.some(u => 
           u.id !== user.id && u.email.toLowerCase() === email.toLowerCase()
@@ -156,7 +156,7 @@ export const AuthProvider = ({ children }) => {
       };
       setUser(updatedUserSession);
       
-      // Save ke localStorage
+      // Save to localStorage
       localStorage.setItem("users", JSON.stringify(updatedUsers));
       localStorage.setItem("currentUser", JSON.stringify(updatedUserSession));
       
