@@ -18,7 +18,7 @@ import Home from "@/pages/Home";
 const Routing = () => {
   const { theme } = useContext(ThemeContext);
   return (
-    <section className={theme}>
+    <section className={`${theme} bg-background text-foreground`}>
       <Routes>
         {/* Example of a route protected by AuthRedirect.
             Users who are already authenticated would be redirected away from the login page. */}
